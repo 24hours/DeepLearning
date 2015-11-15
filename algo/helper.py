@@ -1,10 +1,11 @@
 import gzip
 import cPickle
-import theano
 import numpy
-import theano.tensor as T
 
 def loaddata(filename):
+	import theano.tensor as T
+	import theano
+
 	with gzip.open(filename) as f:
 		train_set, valid_set, test_set = cPickle.load(f)
 
@@ -27,3 +28,9 @@ def loaddata(filename):
 			(test_set_x, test_set_y)]
 
 	return rval
+
+def loaddata_tf(filename):
+	with gzip.open(filename) as f:
+		train_set, valid_set, test_set = cPickle.load(f)
+
+	return (train_set, valid_set, test_set)
