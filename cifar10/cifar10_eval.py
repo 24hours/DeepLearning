@@ -43,7 +43,7 @@ from tensorflow.python.platform import gfile
 import numpy as np
 import tensorflow as tf
 
-from cifar10 import cifar10
+import cifar10
 
 FLAGS = tf.app.flags.FLAGS
 

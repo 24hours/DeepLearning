@@ -46,7 +46,7 @@ from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 
-from tensorflow.models.image.cifar10 import cifar10_input
+import cifar10_input
 from tensorflow.python.platform import gfile
 
 FLAGS = tf.app.flags.FLAGS
