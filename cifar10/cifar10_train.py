@@ -59,7 +59,7 @@ tf.app.flags.DEFINE_integer('max_steps', 1000000,
 tf.app.flags.DEFINE_boolean('log_device_placement', False,
                             """Whether to log device placement.""")
 
-f = open('train.log', 'w')
+f = open('train.log', 'w', 0)
 
 def train():
   """Train CIFAR-10 for a number of steps."""
@@ -116,8 +116,9 @@ def train():
                       'sec/batch)')
         print (format_str % (datetime.now(), step, loss_value,
                              examples_per_sec, sec_per_batch))
-        f.write(format_str +'\n' % (datetime.now(), step, loss_value,
+        f.write(format_str % (datetime.now(), step, loss_value,
                              examples_per_sec, sec_per_batch))
+        f.write('\n')
         
       if step % 100 == 0:
         summary_str = sess.run(summary_op)
@@ -135,7 +136,7 @@ def main(argv=None):  # pylint: disable=unused-argument
     gfile.DeleteRecursively(FLAGS.train_dir)
   gfile.MakeDirs(FLAGS.train_dir)
   train()
-
+  f.close()
 
 if __name__ == '__main__':
   tf.app.run()
