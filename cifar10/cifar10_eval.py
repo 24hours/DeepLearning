@@ -60,7 +60,7 @@ tf.app.flags.DEFINE_integer('num_examples', 10000,
 tf.app.flags.DEFINE_boolean('run_once', False,
                          """Whether to run eval only once.""")
 
-f.open('result.log', 'w', 0)
+f = open('result.log', 'w', 0)
 def eval_once(saver, summary_writer, top_k_op, summary_op):
   """Run Eval once.
 
