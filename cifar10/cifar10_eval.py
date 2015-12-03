@@ -60,7 +60,7 @@ tf.app.flags.DEFINE_integer('num_examples', 10000,
 tf.app.flags.DEFINE_boolean('run_once', False,
                          """Whether to run eval only once.""")
 
-
+f.open('result.log', 'w', 0)
 def eval_once(saver, summary_writer, top_k_op, summary_op):
   """Run Eval once.
 
@@ -103,7 +103,9 @@ def eval_once(saver, summary_writer, top_k_op, summary_op):
       # Compute precision @ 1.
       precision = true_count / total_sample_count
       print('%s: precision @ 1 = %.3f' % (datetime.now(), precision))
-
+      f.write('%s: precision @ 1 = %.3f' % (datetime.now(), precision))
+      f.write('\n')
+      
       summary = tf.Summary()
       summary.ParseFromString(sess.run(summary_op))
       summary.value.add(tag='Precision @ 1', simple_value=precision)
@@ -153,7 +155,7 @@ def evaluate():
       if FLAGS.run_once:
         break
       time.sleep(FLAGS.eval_interval_secs)
-
+    f.close()
 
 def main(argv=None):  # pylint: disable=unused-argument
   cifar10.maybe_download_and_extract()
