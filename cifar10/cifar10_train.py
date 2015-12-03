@@ -116,7 +116,7 @@ def train():
                       'sec/batch)')
         print (format_str % (datetime.now(), step, loss_value,
                              examples_per_sec, sec_per_batch))
-        f.write(format_str % (datetime.now(), step, loss_value,
+        f.write(format_str +'\n' % (datetime.now(), step, loss_value,
                              examples_per_sec, sec_per_batch))
         
       if step % 100 == 0:
